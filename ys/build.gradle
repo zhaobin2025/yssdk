@@ -42,29 +42,31 @@ dependencies {
     api files('libs/yasee-0.9.292.aar')
 }
 
+// 修正发布配置
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                // 使用 JitPack 的 groupId
+                groupId = 'com.github.zhaobin2025'
+                artifactId = 'ys'
+                version = android.defaultConfig.versionName
 
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId = 'com.ys.ys'
-            artifactId = 'yssdk'
-            version = android.defaultConfig.versionName
-            // 指定 aar 文件的确切路径：https://cloud.tencent.com/developer/ask/sof/106381154
-            afterEvaluate {
-                artifact(bundleReleaseAar)
-            }
+                // 发布 aar
+                artifact bundleReleaseAar
 
-            // 修正 Maven 插件在生成的 pom 文件没有携带 dependencies 信息的问题
-            // 用于测试 Gradle 命令：./gradlew publishToMavenLocal
-            // 相关 Github 地址：https://github.com/getActivity/XXPermissions/issues/371#issuecomment-3018735968
-            pom.withXml {
-                def dependencies = asNode().appendNode('dependencies')
-                configurations.implementation.allDependencies.each {
-                    def dependency = dependencies.appendNode('dependency')
-                    dependency.appendNode('groupId', it.group)
-                    dependency.appendNode('artifactId', it.name)
-                    dependency.appendNode('version', it.version)
-                    dependency.appendNode('scope', 'runtime')
+                // 添加 pom 配置
+                pom {
+                    name = artifactId
+                    description = 'Ys SDK'
+                    url = 'https://github.com/zhaobin2025/yssdk'
+
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'https://opensource.org/licenses/MIT'
+                        }
+                    }
                 }
             }
         }
