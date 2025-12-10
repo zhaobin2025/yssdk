@@ -19,9 +19,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+    libraryVariants.configureEach { variant ->
+        variant.packageLibraryProvider.configure { packageLib ->
+            // 剔除 META-INF 目录
+            packageLib.exclude 'META-INF/'
+            // 剔除 R.txt 文件
+            packageLib.exclude 'R.txt'
+        }
     }
 
 //    libraryVariants.all{variant ->
@@ -32,13 +36,37 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+
 //    testImplementation libs.junit
 //    androidTestImplementation libs.ext.junit
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
     api files('libs/yasee-0.9.292.aar')
+}
+
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.ys.ys'
+            artifactId = 'yssdk'
+            version = android.defaultConfig.versionName
+            // 指定 aar 文件的确切路径：https://cloud.tencent.com/developer/ask/sof/106381154
+            afterEvaluate {
+                artifact(bundleReleaseAar)
+            }
+
+            // 修正 Maven 插件在生成的 pom 文件没有携带 dependencies 信息的问题
+            // 用于测试 Gradle 命令：./gradlew publishToMavenLocal
+            // 相关 Github 地址：https://github.com/getActivity/XXPermissions/issues/371#issuecomment-3018735968
+            pom.withXml {
+                def dependencies = asNode().appendNode('dependencies')
+                configurations.implementation.allDependencies.each {
+                    def dependency = dependencies.appendNode('dependency')
+                    dependency.appendNode('groupId', it.group)
+                    dependency.appendNode('artifactId', it.name)
+                    dependency.appendNode('version', it.version)
+                    dependency.appendNode('scope', 'runtime')
+                }
+            }
+        }
+    }
 }
