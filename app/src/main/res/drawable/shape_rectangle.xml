@@ -1,0 +1,6 @@
+<!-- res/drawable/rounded_corner.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="20dp" /> <!-- 设置圆角半径，单位为 dp -->
+    <solid android:color="#FFAAFF" /> <!-- 设置背景颜色 -->
+</shape>

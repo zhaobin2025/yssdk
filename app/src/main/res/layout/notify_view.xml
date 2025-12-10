@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="135dp">
+
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+
+        <ImageView
+            android:id="@+id/title_img"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/notify_icons" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_toLeftOf="@id/title_img"
+            android:text="目前已连接:"
+            android:textSize="9pt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginHorizontal="6dp"
+        android:layout_marginVertical="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_below="@id/title"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/d6"
+                android:layout_gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Y917-008D"
+                android:layout_gravity="center"
+                android:textColor="@color/material_dynamic_neutral50"
+                android:textSize="4pt"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/d1"
+                android:layout_gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Y917-008D"
+                android:layout_gravity="center"
+                android:textColor="@color/material_dynamic_neutral50"
+                android:textSize="4pt"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/d1"
+                android:layout_gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Y917-008D"
+                android:layout_gravity="center"
+                android:textColor="@color/material_dynamic_neutral50"
+                android:textSize="4pt"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/d6"
+                android:layout_gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Y917-008D"
+                android:layout_gravity="center"
+                android:textColor="@color/material_dynamic_neutral50"
+                android:textSize="4pt"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:height="10dp"
+        android:id="@+id/inc_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yasee 正在持续运行."
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:textSize="4pt" />
+</RelativeLayout>

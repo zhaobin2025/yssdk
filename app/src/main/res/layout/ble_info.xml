@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--    androidx.core.widget.NestedScrollView-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BleInfo">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+
+        <Button
+            android:id="@+id/close_ble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="断开"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/clear_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="清屏"
+            app:layout_constraintEnd_toStartOf="@+id/close_ble"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/device_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设备已连接"
+            tools:ignore="MissingConstraints" />
+
+
+        <LinearLayout
+            android:id="@+id/ecg_view"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/close_ble"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/ecg_cgc"
+                android:textColor="@color/light_blue_600"
+                android:text="寸:-- 关:-- 尺:--"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                tools:ignore="MissingConstraints" />
+
+            <com.yasee.yaseejava.views.LiveECGView
+                android:id="@+id/ecg_cun"
+                android:layout_width="match_parent"
+                app:ecgScaleY="10"
+                app:baseLine="300"
+                android:layout_marginBottom="1dp"
+                android:layout_height="180dp" />
+
+            <com.yasee.yaseejava.views.LiveECGView
+                android:id="@+id/ecg_guan"
+                android:layout_width="match_parent"
+                app:ecgScaleY="10"
+                android:layout_marginBottom="1dp"
+                app:baseLine="180"
+                android:layout_height="160dp" />
+
+            <com.yasee.yaseejava.views.LiveECGView
+                android:id="@+id/ecg_chi"
+                android:layout_width="match_parent"
+                app:ecgScaleY="12"
+                app:baseLine="80"
+                android:layout_height="100dp" />
+
+        </LinearLayout>
+
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/supports_check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ecg_view">
+
+            <TextView
+                android:id="@+id/send_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:lineHeight="3mm"
+                android:text="收发数据:\n\n" />
+        </androidx.core.widget.NestedScrollView>
+
+
+        <GridView
+            android:id="@+id/supports_check"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:numColumns="5"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
